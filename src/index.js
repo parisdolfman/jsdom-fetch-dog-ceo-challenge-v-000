@@ -1,11 +1,9 @@
-console.log('%c HI', 'color: firebrick')
-
 let breeds = [];
 
 document.addEventListener('DOMContentLoaded', function () {
-    loadImages();
-    loadBreedOptions();
-  });
+  loadImages();
+  loadBreedOptions();
+});
 
 function loadImages() {
   const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
@@ -17,11 +15,11 @@ function loadImages() {
 }
 
 function addImage(dogPicUrl) {
-    let container = document.querySelector('#dog-image-container');
-    let newImageEl = document.createElement('img');
-    newImageEl.src = dogPicUrl;
-    container.appendChild(newImageEl);
-  }
+  let container = document.querySelector('#dog-image-container');
+  let newImageEl = document.createElement('img');
+  newImageEl.src = dogPicUrl;
+  container.appendChild(newImageEl);
+}
 
 function loadBreedOptions() {
   const breedUrl = 'https://dog.ceo/api/breeds/list/all'
@@ -36,10 +34,10 @@ function loadBreedOptions() {
 }
 
 function updateBreedList(breeds) {
-    let ul = document.querySelector('#dog-breeds');
-    removeChildren(ul);
-    breeds.forEach(breed => addBreed(breed));
-  }
+  let ul = document.querySelector('#dog-breeds');
+  removeChildren(ul);
+  breeds.forEach(breed => addBreed(breed));
+}
 
 function removeChildren(element) {
   let child = element.lastElementChild;
@@ -49,12 +47,16 @@ function removeChildren(element) {
   }
 }
 
+function selectBreedsStartingWith(letter) {
+  updateBreedList(breeds.filter(breed => breed.startsWith(letter)));
+}
+
 function addBreedSelectListener() {
-    let breedDropdown = document.querySelector('#breed-dropdown');
-    breedDropdown.addEventListener('change', function (event) {
-      selectBreedsStartingWith(event.target.value);
-    });
-  }
+  let breedDropdown = document.querySelector('#breed-dropdown');
+  breedDropdown.addEventListener('change', function (event) {
+    selectBreedsStartingWith(event.target.value);
+  });
+}
 
 function addBreed(breed) {
   let ul = document.querySelector('#dog-breeds');
@@ -66,7 +68,5 @@ function addBreed(breed) {
 }
 
 function updateColor(event) {
-    event.target.style.color = 'Aqua';
+  event.target.style.color = 'Aqua';
 }
-
-
